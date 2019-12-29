@@ -9,12 +9,22 @@ isbn:{
     type:String,
     required:true
 },
-autho:{
+author:{
     type:String,
     require:true
-}
-
-
+} ,
+description: {
+    type: String
+  },
+  published_date: {
+    type: Date
+  },publisher: {
+    type: String
+  },
+  update_date :{
+      type : Date,
+      default:Date.now
+  }
 
 });
 

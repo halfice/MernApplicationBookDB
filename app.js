@@ -1,13 +1,28 @@
-const express = require('express');
-const connectDB=require('./configs/db');
-const app =express();
+// app.js
 
+const express = require('express');
+const connectDB = require('./configs/db');
+var cors = require('cors');
+
+// routes
+const books = require('./routes/api/books');
+
+const app = express();
+
+// Connect Database
 connectDB();
 
-app.get('/',(req,res)=>{
-    res.send('BIS MILLAH HRI REHMAN NIR RAHEEM');
+// cors
+app.use(cors({ origin: true, credentials: true }));
 
-});
+// Init Middleware
+app.use(express.json({ extended: false }));
 
-const port=9002;
-app.listen(port,()=>console.log("server is running"));
+app.get('/', (req, res) => res.send('Hello world!'));
+
+// use Routes
+app.use('/api/books', books);
+
+const port = process.env.PORT || 9002;
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
